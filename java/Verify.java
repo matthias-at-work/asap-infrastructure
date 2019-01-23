@@ -24,7 +24,7 @@ class Verify {
 		try { 
 			// read in data to verify
 			Path dataToVerifyFilePath = Paths.get("data.zip");
-			byte[] dataToVerfiy = Files.readAllBytes(dataToVerifyFilePath);  // any amoutn of bytes
+			byte[] dataToVerfiy = Files.readAllBytes(dataToVerifyFilePath);
 			
 			// read in signature
 			Path signatureFilePath = Paths.get("signature.sig");
@@ -32,7 +32,7 @@ class Verify {
 
 			// read in certificate and extract public-key 
 			Path certificateFilePath = Paths.get("certificate.der");
-            FileInputStream inputStream = new FileInputStream(certificateFilePath.toFile());
+			FileInputStream inputStream = new FileInputStream(certificateFilePath.toFile());
 			CertificateFactory fact = CertificateFactory.getInstance("X.509");
 			X509Certificate cer = (X509Certificate) fact.generateCertificate(inputStream);
 			PublicKey publicKey = cer.getPublicKey();

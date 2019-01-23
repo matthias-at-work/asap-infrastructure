@@ -31,7 +31,7 @@ class Decrypt {
 			byte[] encryptedBytes = Files.readAllBytes(encryptedDataFilePath); 
 
 			// iv-size: 16 bytes (128 bits)
-			// iv is not secret (but unique). Likely to be prepended to the data... 
+			// iv is not secret (but unique). Will be prepended to the encrypted data... 
 			byte[] iv = new byte[] {
 				(byte) 0x01,(byte) 0x01, (byte) 0x01, (byte) 0x01, (byte) 0x01,(byte) 0x01, (byte) 0x01, (byte) 0x01,
 				(byte) 0x01,(byte) 0x01, (byte) 0x01, (byte) 0x01, (byte) 0x01,(byte) 0x01, (byte) 0x01, (byte) 0x01
@@ -48,8 +48,8 @@ class Decrypt {
 			SecretKeySpec secretKeySpec = new SecretKeySpec(sharedKey, "AES");
 
 			// algo to use: AES CBC 256
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
 			byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
 
 			// write decrypted bytes to file.
@@ -58,7 +58,6 @@ class Decrypt {
 
 			System.out.println("Wrote decrypted file to data.zip successfully.");
         } 
-  
         catch (NoSuchAlgorithmException e) { 
   
             System.out.println("Exception thrown : " + e); 
