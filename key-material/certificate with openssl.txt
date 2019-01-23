@@ -1,0 +1,21 @@
+﻿The certificates in the examples used where created with OpenSSL under Ubuntu:
+
+// -----------------------------------------------------
+// 1. generate your private key and public certificate. 
+//    cmd prompts for certificate deetails.
+//    creates: -> key.pem
+//          -> certificate.pem
+//
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 3650 -out certificate.pem
+
+// -----------------------------------------------------
+// 2. Combine key and certificate in a PKCS#12 (P12) bundle
+//    creates: -> certificate.p12
+//
+openssl pkcs12 -inkey key.pem -in certificate.pem -export -out certificate.p12
+
+// -----------------------------------------------------
+// 3. Convert pem-file to der-file
+//    creates: -> certificate.der
+//
+openssl x509 -outform der -in certificate.pem -out certificate.der
