@@ -48,7 +48,7 @@ class Decrypt {
 			SecretKeySpec secretKeySpec = new SecretKeySpec(sharedKey, "AES");
 
 			// algo to use: AES CBC 256
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
 			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
 			byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
 
